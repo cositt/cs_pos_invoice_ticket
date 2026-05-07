@@ -1,0 +1,45 @@
+// CS_POS_INVOICE_TICKET
+// Mejoras de legibilidad para ticket post-pago. Compatible con impresora térmica 80mm.
+
+.pos-receipt {
+
+    // Total: más grande y destacado
+    .receipt-total {
+        font-size: 1.35em;
+        margin: 6px 0;
+    }
+
+    // Bloque de impuestos/IVA
+    .pos-receipt-taxes {
+        font-size: 1.1em;
+
+        .d-flex {
+            padding: 2px 0;
+        }
+    }
+
+    // Líneas de pago (efectivo / tarjeta)
+    .paymentlines {
+        font-size: 1.15em;
+        font-weight: 500;
+        padding: 3px 0;
+    }
+
+    // Cambio devuelto
+    .receipt-change {
+        font-size: 1.1em;
+    }
+}
+
+// Etiqueta "Método de pago:"
+.cs-payment-label {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+// Bloque QR/factura: aumentar legibilidad del texto asociado
+.pos-receipt .unique-code,
+.pos-receipt .portal-url {
+    font-size: 1.1em;
+}

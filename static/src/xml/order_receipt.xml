@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="cs_pos_invoice_ticket.OrderReceipt"
+       t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+
+        <!--
+            1. Cabecera "Método de pago:" antes de las líneas de pago.
+               Solo visible cuando el pedido está finalizado y hay líneas de pago.
+        -->
+        <xpath expr="//div[hasclass('paymentlines')]" position="before">
+            <div t-if="order.finalized and paymentLines.length > 0"
+                 class="cs-payment-label">
+                Método de pago:
+            </div>
+        </xpath>
+
+        <!--
+            2. QR de factura: solo si el pago es 100% con tarjeta.
+               Se modifica el t-if del bloque QR para añadir la condición isCardOnlyPayment().
+               El XPath navega desde img#posqrcode hasta el div contenedor con el t-if original.
+        -->
+        <xpath expr="//img[@id='posqrcode']/parent::div/parent::div" position="attributes">
+            <attribute name="t-if">order.company.point_of_sale_use_ticket_qr_code and order.finalized and isCardOnlyPayment()</attribute>
+        </xpath>
+
+    </t>
+</templates>
