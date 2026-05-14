@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="cs_pos_invoice_ticket.ReceiptHeader"
+       t-inherit="point_of_sale.ReceiptHeader"
+       t-inherit-mode="extension">
+
+        <!-- Logo: clase propia para dimensionar en 80mm; el src sigue siendo logoUrl del TPV -->
+        <xpath expr="//img[hasclass('pos-receipt-logo')]" position="attributes">
+            <attribute name="class" add="cs-pos-receipt-logo" separator=" "/>
+        </xpath>
+
+        <!-- Odoo fija font-size: 75% en ticket/fecha; encoge toda la cabecera visualmente -->
+        <xpath expr="//div[hasclass('text-center') and hasclass('pt-3')][child::span[hasclass('pos-receipt-vat')]]" position="attributes">
+            <attribute name="class" add="cs-receipt-ticket-meta" separator=" "/>
+            <attribute name="style">font-size: 1em;</attribute>
+        </xpath>
+
+        <!-- Texto de empresa (receipt_header del TPV): bloque legible -->
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="attributes">
+            <attribute name="class" add="cs-receipt-company-block" separator=" "/>
+        </xpath>
+    </t>
+</templates>
